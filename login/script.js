@@ -1,298 +1,71 @@
-:root {
-    --primary: #6366f1;
-    --primary-dark: #4f46e5;
-    --primary-glow: rgba(99, 102, 241, 0.5);
-    --bg-dark: #0f172a;
-    --bg-surface: rgba(30, 41, 59, 0.7);
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-    --border: rgba(255, 255, 255, 0.1);
-    --danger: #ef4444;
-}
+const API_BASE = 'https://api.anajakcode.site'; // ✅ Updated URL
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-    font-family: 'Inter', sans-serif;
-    background: var(--bg-dark);
-    color: var(--text-main);
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    position: relative;
-}
-
-/* Animated Background Shapes */
-.bg-shape {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.4;
-    z-index: -1;
-    animation: float 10s infinite ease-in-out;
-}
-
-.shape-1 {
-    width: 300px;
-    height: 300px;
-    background: var(--primary);
-    top: -50px;
-    left: -50px;
-}
-
-.shape-2 {
-    width: 400px;
-    height: 400px;
-    background: #ec4899;
-    bottom: -100px;
-    right: -100px;
-    animation-delay: 2s;
-}
-
-.shape-3 {
-    width: 200px;
-    height: 200px;
-    background: #06b6d4;
-    top: 40%;
-    left: 60%;
-    animation-delay: 4s;
-}
-
-@keyframes float {
-    0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(20px, -20px); }
-}
-
-/* Login Container */
-.login-container {
-    width: 100%;
-    max-width: 420px;
-    padding: 20px;
-    z-index: 10;
-}
-
-.login-card {
-    background: var(--bg-surface);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 40px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Header */
-.login-header {
-    text-align: center;
-    margin-bottom: 32px;
-}
-
-.logo-icon {
-    width: 64px;
-    height: 64px;
-    background: linear-gradient(135deg, var(--primary), #8b5cf6);
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px;
-    font-size: 28px;
-    color: white;
-    box-shadow: 0 10px 25px var(--primary-glow);
-}
-
-.login-header h2 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 8px;
-    background: linear-gradient(to right, #fff, #cbd5e1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.login-header p {
-    color: var(--text-muted);
-    font-size: 14px;
-}
-
-/* Form Inputs */
-.input-group {
-    margin-bottom: 20px;
-}
-
-.input-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.input-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.input-wrapper i.fa-envelope, 
-.input-wrapper i.fa-lock {
-    position: absolute;
-    left: 16px;
-    color: var(--text-muted);
-    transition: color 0.3s;
-}
-
-.input-wrapper input {
-    width: 100%;
-    padding: 14px 16px 14px 48px;
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    color: white;
-    font-size: 15px;
-    font-family: 'Inter', sans-serif;
-    transition: all 0.3s;
-}
-
-.input-wrapper input:focus {
-    outline: none;
-    border-color: var(--primary);
-    background: rgba(15, 23, 42, 0.8);
-    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
-}
-
-.input-wrapper input:focus + i,
-.input-wrapper:focus-within i {
-    color: var(--primary);
-}
-
-.toggle-password {
-    position: absolute;
-    right: 16px;
-    background: none;
-    border: none;
-    color: var(--text-muted);
-    cursor: pointer;
-    padding: 0;
-    font-size: 16px;
-    transition: color 0.3s;
-}
-
-.toggle-password:hover {
-    color: white;
-}
-
-/* Login Button */
-.btn-login {
-    width: 100%;
-    padding: 16px;
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    color: white;
-    border: none;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    transition: all 0.3s;
-    margin-top: 10px;
-    position: relative;
-    overflow: hidden;
-}
-
-.btn-login:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px var(--primary-glow);
-}
-
-.btn-login:active {
-    transform: translateY(0);
-}
-
-.btn-login.loading {
-    pointer-events: none;
-    opacity: 0.8;
-}
-
-.btn-login.loading span {
-    display: none;
-}
-
-.btn-login.loading::after {
-    content: '';
-    width: 20px;
-    height: 20px;
-    border: 2px solid rgba(255,255,255,0.3);
-    border-top-color: white;
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-/* Footer */
-.login-footer {
-    text-align: center;
-    margin-top: 24px;
-    font-size: 12px;
-    color: var(--text-muted);
-    opacity: 0.6;
-}
-
-/* Toast */
-.toast-container {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 9999;
-}
-
-.toast {
-    padding: 14px 20px;
-    background: var(--bg-surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    min-width: 280px;
-    animation: slideIn 0.3s ease;
-    backdrop-filter: blur(10px);
-    color: white;
-}
-
-.toast-error { border-left: 4px solid var(--danger); }
-.toast-success { border-left: 4px solid #10b981; }
-
-@keyframes slideIn {
-    from { transform: translateX(100%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-}
-
-/* Responsive */
-@media (max-width: 480px) {
-    .login-card {
-        padding: 30px 20px;
+async function handleLogin(e) {
+    e.preventDefault();
+    
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const btn = document.getElementById('login-btn');
+    
+    btn.classList.add('loading');
+    
+    try {
+        const response = await fetch(`${API_BASE}/api/admin/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include', // ✅ Critical for Session
+            body: JSON.stringify({ email, password })
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok) {
+            localStorage.setItem('admin_logged_in', 'true');
+            localStorage.setItem('admin_email', email);
+            showToast('Login successful! Redirecting...', 'success');
+            
+            setTimeout(() => {
+                window.location.href = '/'; // ✅ Absolute Path to Root
+            }, 1500);
+        } else {
+            showToast(data.error || 'Invalid credentials', 'error');
+            btn.classList.remove('loading');
+        }
+    } catch (error) {
+        console.error(error);
+        showToast('Connection failed. Check server status.', 'error');
+        btn.classList.remove('loading');
     }
-    .shape-1, .shape-2, .shape-3 {
-        opacity: 0.2;
+}
+
+function togglePassword() {
+    const input = document.getElementById('password');
+    const icon = document.getElementById('eye-icon');
+    
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+    } else {
+        input.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
     }
+}
+
+function showToast(msg, type = 'error') {
+    const container = document.getElementById('toast-container');
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    
+    const icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+    toast.innerHTML = `<i class="fas ${icon}"></i> ${msg}`;
+    
+    container.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(100%)';
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
 }
