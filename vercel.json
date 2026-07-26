@@ -1,9 +1,0 @@
-{
-  "trailingSlash": true,
-  "rewrites": [
-    {
-      "source": "/login",
-      "destination": "/login/"
-    }
-  ]
-}
