@@ -41,7 +41,7 @@ const API = {
         formData.append('file', file);
         return fetch(`${API_BASE}/api/admin/upload`, {
             method: 'POST',
-            credentials: 'include', // ✅ Critical for Session
+            credentials: 'include', // ✅ Important for Session
             body: formData
         }).then(r => r.json());
     }
@@ -100,7 +100,7 @@ const SoundFX = {
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
     if (localStorage.getItem('admin_logged_in') !== 'true') {
-        window.location.href = '/login/'; // ✅ Absolute Path
+        window.location.href = '/login/'; // ✅ Absolute Path to prevent loop
         return;
     }
 
@@ -344,12 +344,12 @@ async function loadRecentOrders() {
             </div>
         `).join('');
     } catch (e) {
-        document.getElementById('recent-orders-list').innerHTML = '<p class="empty-state">Failed to load orders</p>;
+        document.getElementById('recent-orders-list').innerHTML = '<p class="empty-state">Failed to load orders</p>';
     }
 }
 
 // ============================================
-// PRODUCTS (FIXED SYNTAX ERRORS)
+// PRODUCTS
 // ============================================
 async function loadProducts() {
     try {
@@ -502,7 +502,7 @@ async function deleteProduct(id, name) {
 }
 
 // ============================================
-// OTHER SECTIONS (FIXED SYNTAX ERRORS)
+// OTHER SECTIONS
 // ============================================
 async function loadOrders() {
     try {
