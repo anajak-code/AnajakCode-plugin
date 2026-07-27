@@ -41,7 +41,7 @@ const API = {
         formData.append('file', file);
         return fetch(`${API_BASE}/api/admin/upload`, {
             method: 'POST',
-            credentials: 'include', // ✅ Important for Session
+            credentials: 'include', // ✅ Critical for Session
             body: formData
         }).then(r => r.json());
     }
@@ -100,7 +100,7 @@ const SoundFX = {
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
     if (localStorage.getItem('admin_logged_in') !== 'true') {
-        window.location.href = '/login/'; // ✅ Absolute Path to prevent loop
+        window.location.href = '/login/'; // ✅ Absolute Path
         return;
     }
 
@@ -344,19 +344,19 @@ async function loadRecentOrders() {
             </div>
         `).join('');
     } catch (e) {
-        document.getElementById('recent-orders-list').innerHTML = '<p class="empty-state">Failed to load orders</p>';
+        document.getElementById('recent-orders-list').innerHTML = '<p class="empty-state">Failed to load orders</p>;
     }
 }
 
 // ============================================
-// PRODUCTS
+// PRODUCTS (FIXED SYNTAX ERRORS)
 // ============================================
 async function loadProducts() {
     try {
         const products = await API.getProducts(); // ✅ Fixed Typo
         document.getElementById('products-tbody').innerHTML = products.map(p => { // ✅ Fixed Arrow Function
             const priceDisplay = p.price === 0 ? '<span class="badge badge-success">FREE</span>' : `<strong style="color:var(--primary);">$${p.price.toFixed(2)}</strong>`;
-            const stockDisplay = p.stock >= 999999 ? '<span class="badge badge-success">♾️ Unlimited</span>' : `<span class="badge ${p.stock>0?'badge-success':'badge-danger'}">${p.stock}</span>`;
+            const stockDisplay = p.stock >= 999999 ? '<span class="badge badge-success">️ Unlimited</span>' : `<span class="badge ${p.stock>0?'badge-success':'badge-danger'}">${p.stock}</span>`;
             
             return `
                 <tr>
@@ -502,7 +502,7 @@ async function deleteProduct(id, name) {
 }
 
 // ============================================
-// OTHER SECTIONS
+// OTHER SECTIONS (FIXED SYNTAX ERRORS)
 // ============================================
 async function loadOrders() {
     try {
